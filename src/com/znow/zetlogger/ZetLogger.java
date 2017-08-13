@@ -12,6 +12,7 @@ public class ZetLogger {
 	private String className = "";
 	private ZetLoggerConfigurator configurator = null;
 	
+	
 	public ZetLogger(String configFilePath, String className) {
 		this.className = className;
 		

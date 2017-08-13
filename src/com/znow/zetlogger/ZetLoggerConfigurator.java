@@ -7,10 +7,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 class ZetLoggerConfigurator {
-	
+
 	private String logFilePath = "";
 	private boolean consoleOutputEnabled;
 	private boolean saveToFileEnabled;
+	
+	private PrioritiesContainer priorities = new PrioritiesContainer();
+	
 	
 	ZetLoggerConfigurator(String configFilePath) {
 		getConfigurations(configFilePath);
@@ -30,24 +33,13 @@ class ZetLoggerConfigurator {
 				String[] elements = line.split("#:#");
 				
 				if (elements[0].equals("target")) {
-					if (elements[1].equals("console")) {
-						consoleOutputEnabled = true;
-						saveToFileEnabled = false;
-					} 
-					else if (elements[1].equals("file")) {
-						consoleOutputEnabled = false;
-						saveToFileEnabled = true;
-					} 
-					else if (elements[1].equals("both")) {
-						consoleOutputEnabled = true;
-						saveToFileEnabled = true;
-					} 
-					else {
-						System.out.println("'"+elements[1]+"' target option doesn't exist");
-					}
+					getTargetConfig(elements[1]);
 				}
 				else if (elements[0].equals("file")) {
 					logFilePath = elements[1];
+				}
+				else if (elements[0].equals("priority")) {
+					getPriorityConfig(elements[1]);
 				}
 				else {
 					System.out.println("'"+elements[0]+"' config key doesn't exist");
@@ -67,6 +59,28 @@ class ZetLoggerConfigurator {
 			}
 		}
 	}
+	
+	private void getTargetConfig(String option) {
+		if (option.equals("console")) {
+			consoleOutputEnabled = true;
+			saveToFileEnabled = false;
+		} 
+		else if (option.equals("file")) {
+			consoleOutputEnabled = false;
+			saveToFileEnabled = true;
+		} 
+		else if (option.equals("both")) {
+			consoleOutputEnabled = true;
+			saveToFileEnabled = true;
+		} 
+		else {
+			System.out.println("'"+option+"' target option doesn't exist");
+		}
+	}
+	
+	private void getPriorityConfig(String options) {
+		String[] prioritySettings = options.split(",");
+	}
 
 	protected String getLogFilePath() {
 		return logFilePath;
@@ -78,6 +92,10 @@ class ZetLoggerConfigurator {
 
 	protected boolean isSaveToFileEnabled() {
 		return saveToFileEnabled;
+	}
+	
+	protected PrioritiesContainer getPrioritiesContainer() {
+		return priorities;
 	}
 	
 }

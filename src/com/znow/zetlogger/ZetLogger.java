@@ -20,62 +20,82 @@ public class ZetLogger {
 	}
 	
 	public void info(String info) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		
-		String logEntry = dateFormat.format(date) + "  INFO     " + className + " - " + info;
-		
-		if (configurator.isConsoleOutputEnabled()) {
-			System.out.println(logEntry);
+		if (configurator.getPrioritiesContainer().getInfoPriority()) {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			
+			String logEntry = dateFormat.format(date) + "  INFO     " + className + " - " + info;
+			
+			if (configurator.isConsoleOutputEnabled()) {
+				System.out.println(logEntry);
+			}
+			
+			if (configurator.isSaveToFileEnabled()) {
+				saveToFile(configurator.getLogFilePath(), logEntry);
+			}
 		}
-		
-		if (configurator.isSaveToFileEnabled()) {
-			saveToFile(configurator.getLogFilePath(), logEntry);
+		else {
+			return;
 		}
 	}
 	
 	public void trace(String info) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		
-		String logEntry = dateFormat.format(date) + "  TRACE    " + className + " - " + info;
-		
-		if (configurator.isConsoleOutputEnabled()) {
-			System.out.println(logEntry);
+		if (configurator.getPrioritiesContainer().getTracePriority()) {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			
+			String logEntry = dateFormat.format(date) + "  TRACE    " + className + " - " + info;
+			
+			if (configurator.isConsoleOutputEnabled()) {
+				System.out.println(logEntry);
+			}
+			
+			if (configurator.isSaveToFileEnabled()) {
+				saveToFile(configurator.getLogFilePath(), logEntry);
+			}
 		}
-		
-		if (configurator.isSaveToFileEnabled()) {
-			saveToFile(configurator.getLogFilePath(), logEntry);
+		else {
+			return;
 		}
 	}
 	
-	public void warn(String info) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		
-		String logEntry = dateFormat.format(date) + "  WARNING  " + className + " - " + info;
-		
-		if (configurator.isConsoleOutputEnabled()) {
-			System.out.println(logEntry);
+	public void warn(String info) {	
+		if (configurator.getPrioritiesContainer().getWarningPriority()) {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			
+			String logEntry = dateFormat.format(date) + "  WARNING  " + className + " - " + info;
+			
+			if (configurator.isConsoleOutputEnabled()) {
+				System.out.println(logEntry);
+			}
+			
+			if (configurator.isSaveToFileEnabled()) {
+				saveToFile(configurator.getLogFilePath(), logEntry);
+			}
 		}
-		
-		if (configurator.isSaveToFileEnabled()) {
-			saveToFile(configurator.getLogFilePath(), logEntry);
+		else {
+			return;
 		}
 	}
 	
 	public void error(String info) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		
-		String logEntry = dateFormat.format(date) + "  ERROR    " + className + " - " + info;
-		
-		if (configurator.isConsoleOutputEnabled()) {
-			System.out.println(logEntry);
+		if (configurator.getPrioritiesContainer().getErrorPriority()) {
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			Date date = new Date();
+			
+			String logEntry = dateFormat.format(date) + "  ERROR    " + className + " - " + info;
+			
+			if (configurator.isConsoleOutputEnabled()) {
+				System.out.println(logEntry);
+			}
+			
+			if (configurator.isSaveToFileEnabled()) {
+				saveToFile(configurator.getLogFilePath(), logEntry);
+			}
 		}
-		
-		if (configurator.isSaveToFileEnabled()) {
-			saveToFile(configurator.getLogFilePath(), logEntry);
+		else {
+			return;
 		}
 	}
 	

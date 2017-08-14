@@ -80,6 +80,21 @@ class ZetLoggerConfigurator {
 	
 	private void getPriorityConfig(String options) {
 		String[] prioritySettings = options.split(",");
+		
+		priorities.setPrioritiesCustomizable();
+		
+		for (String setting : prioritySettings) {
+			if (setting.equals("info"))
+				priorities.setInfoPriority(true);
+			else if (setting.equals("trace"))
+				priorities.setTracePriority(true);
+			else if (setting.equals("warning"))
+				priorities.setWarningPriority(true);
+			else if (setting.equals("error"))
+				priorities.setErrorPriority(true);
+			else
+				System.out.println("'"+setting+"' priority setting doesn't exist");
+		}
 	}
 
 	protected String getLogFilePath() {

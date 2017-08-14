@@ -2,20 +2,20 @@ package com.znow.zetlogger;
 
 class PrioritiesContainer {
 	
-	private boolean infoPriority;
-	private boolean tracePriority;
-	private boolean warningPriority;
-	private boolean errorPriority;
+	private boolean infoPriority = true;
+	private boolean tracePriority = true;
+	private boolean warningPriority = true;
+	private boolean errorPriority = true;
 	
 	
-	protected void setPriorityToAll() {
-		setInfoPriority(true);
-		setTracePriority(true);
-		setWarningPriority(true);
-		setErrorPriority(true);
+	protected void setPrioritiesCustomizable() {
+		setInfoPriority(false);
+		setTracePriority(false);
+		setWarningPriority(false);
+		setErrorPriority(false);
 	}
 	
-	protected boolean isInfoPriority() {
+	protected boolean getInfoPriority() {
 		return infoPriority;
 	}
 	
@@ -23,7 +23,7 @@ class PrioritiesContainer {
 		this.infoPriority = infoPriority;
 	}
 
-	protected boolean isTracePriority() {
+	protected boolean getTracePriority() {
 		return tracePriority;
 	}
 
@@ -31,7 +31,7 @@ class PrioritiesContainer {
 		this.tracePriority = tracePriority;
 	}
 
-	protected boolean isWarningPriority() {
+	protected boolean getWarningPriority() {
 		return warningPriority;
 	}
 
@@ -39,7 +39,7 @@ class PrioritiesContainer {
 		this.warningPriority = warningPriority;
 	}
 
-	protected boolean isErrorPriority() {
+	protected boolean getErrorPriority() {
 		return errorPriority;
 	}
 
